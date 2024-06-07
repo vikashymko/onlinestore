@@ -122,7 +122,7 @@ input[type=submit]{
 }
 input[type="submit"][name="update_order"]{
 	font-family: 'Times New Roman', Times, serif;
-	border-radius: 10px; /* Заокруглення кути */
+	border-radius: 10px; 
 	height: 7.7%;
 }
 /*-------form container-------*/
@@ -267,8 +267,8 @@ header.scrolled a:hover{
 .navbar a{
 	font-size: 1rem;
 	text-transform: uppercase;
-	color: #fff; /* Змінити колір тексту на білий */
-    margin: 0 4rem; /* Збільшити відстань між надписами */
+	color: #fff; 
+    margin: 0 4rem; 
 }
 .navbar a:hover,
 header .icons i:hover{
@@ -368,7 +368,7 @@ header .icons i:hover{
 	text-transform: uppercase;
 	text-align: center;
 	font-size: 1rem;
-	margin-bottom: 1rem; /* доданий відступ нижче від заголовка */
+	margin-bottom: 1rem; 
 }
 .show-products,
 .message-container,
@@ -407,7 +407,7 @@ header .icons i:hover{
 }
 .edit:hover,
 .delete:hover {
-	background: #a21caf; /* Колір фону при наведенні */
+	background: #a21caf; 
 }
 .update-container{
 	position: fixed;
@@ -517,8 +517,8 @@ header .icons i:hover{
 	.header .flex .navbar a{
 		font-size: 1rem;
     	text-transform: uppercase;
-    	color: #fff; /* Змінити колір тексту на білий */
-    	margin: 0 5rem; /* Збільшити відстань між надписами */
+    	color: #fff; 
+    	margin: 0 5rem; 
 	}
 	.header .flex .navbar a:hover{
 		color: #fff;

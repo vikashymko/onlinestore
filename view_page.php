@@ -67,7 +67,6 @@
 		</div>
 	</div>
 	<div class="line4"></div>
-	<!----------about us----------->
 	<section class="view_page">
 		<?php
 			if(isset($message)){

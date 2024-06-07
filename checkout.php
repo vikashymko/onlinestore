@@ -20,7 +20,7 @@
 		$placed_on = date('d-M-Y');
 		$cart_total=0;
 		$cart_product[]='';
-		$cart_query=mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id") or die('query failed');
+		$cart_query=mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id") or die('Запит не виконано');
 
 		if(mysqli_num_rows($cart_query)>0) {
 			while($cart_item=mysqli_fetch_assoc($cart_query)){
@@ -32,7 +32,7 @@
 		$total_products = implode(',', $cart_product);
 		mysqli_query($conn, "INSERT INTO `order` (`user_id`,`name`,`number`,`email`,`method`,`address`,`total_products`,`total_price`,`placed_on`) VALUES ('$user_id', '$name','$number','$email','$method','$address','$total_product','$cart_total','$placed_on')");
 		mysqli_query($conn, "DELETE FROM `cart` WHERE user_id='$user_id'");
-		$message[]='order placed successfully';
+		$message[]='Замовлення успішно оформлено';
 		header('location:checkout.php');
 	}
 ?>
@@ -48,20 +48,18 @@
 	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="main.css" />
-	<title>veggen - contact us page</title>
+	<title>veggen - checkout</title>
 </head>
 <body>
 	<?php include 'header.php';?>
 	<div class="banner">
 		<div class="detail">
-			<h1>order</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-			<a href="index.php">home</a><span>/ order</span>
+			<h1>Ваше замовлення</h1>
+			<p>Книга домчить до будь-яких берегів. (Ч. Діккенс)</p>
 		</div>
 	</div>
 	<div class="line"></div>
 	<div class="checkout-form">
-		<h1 class="title">payment process</h1>
 		<?php
 			if(isset($message)){
 				foreach ($message as $message){
@@ -77,7 +75,7 @@
 		<div class="display-order">
 			<div class="box-container">
 				<?php
-				$select_cart=mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id'") or die('query f');
+				$select_cart=mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id'") or die('Запит не виконано');
 				$total=0;
 				$grand_total = 0;
 				if (mysqli_num_rows($select_cart)>0) {
@@ -94,60 +92,54 @@
 					}
 				?>
 			</div>
-			<span class="grand-total">Total Amount Payable : $ <?= $grand_total; ?></span>
+			<span class="grand-total">Загальна сума: $ <?= $grand_total; ?></span>
 		</div>
 		<form method="post">
 			<div class="input-field">
-				<label>your name</label>
-				<input type="text" name="name" placeholder="enter your name">
+				<label>Ім'я</label>
+				<input type="text" name="name" placeholder="Введіть ім'я">
 			</div>
 			<div class="input-field">
-				<label>your number</label>
-				<input type="number" name="number" placeholder="enter your number">
+				<label>Номер</label>
+				<input type="number" name="number" placeholder="Введіть номер">
 			</div>
 			<div class="input-field">
-				<label>your email</label>
-				<input type="text" name="email" placeholder="enter your email">
+				<label>Email</label>
+				<input type="text" name="email" placeholder="Введіть email">
 			</div>
 			<div class="input-field">
-				<label>select payment method</label>
+				<label>Виберіть метод оплати</label>
 				<select name="method">
-					<option selected disabled>select payment method</option>
-					<option value="cash on delivery">cash on delivery</option>
-					<option value="credit card">credit card</option>
-					<option value="paytm">paytm</option>	
-					<option value="paypal">paypal</option>	
+					<option selected disabled>none</option>
+					<option value="cash on delivery">Готівка</option>
+					<option value="credit card">Кредитна картка</option>
 				</select>
 			</div>
 			<div class="input-field">
-				<label>address line 1</label>
-				<input type="text" name="flate" placeholder="e. g flate no.">
+				<label>Номер будинку</label>
+				<input type="text" name="flate" placeholder="Наприклад, 1">
 			</div>
 			<div class="input-field">
-				<label>address line 1</label>
-				<input type="text" name="flate" placeholder="e. g street name">
+				<label>Вулиця</label>
+				<input type="text" name="flate" placeholder="Наприклад, Грушевського">
 			</div>
 			<div class="input-field">
-				<label>address line 2</label>
-				<input type="text" name="flate" placeholder="e. g street name">
+				<label>Місто</label>
+				<input type="text" name="city" placeholder="Наприклад, Київ">
 			</div>
 			<div class="input-field">
-				<label>city</label>
-				<input type="text" name="city" placeholder="e. g delhi">
+				<label>Область</label>
+				<input type="text" name="state" placeholder="Наприклад, Київська">
 			</div>
 			<div class="input-field">
-				<label>state</label>
-				<input type="text" name="state" placeholder="e. g delhi">
+				<label>Країна</label>
+				<input type="text" name="country" placeholder="Наприклад, Україна">
 			</div>
 			<div class="input-field">
-				<label>country</label>
-				<input type="text" name="country" placeholder="e. g India">
+				<label>Індекс</label>
+				<input type="text" name="flate" placeholder="Наприклад, 56530">
 			</div>
-			<div class="input-field">
-				<label>pin code</label>
-				<input type="text" name="flate" placeholder="e. g 110012">
-			</div>
-			<input type="submit" name="order-btn" class="btn" value="order now">
+			<input type="submit" name="order-btn" class="btn" value="Замовити">
 		</form>
 	</div>
 	
