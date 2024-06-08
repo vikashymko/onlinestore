@@ -91,7 +91,7 @@
 			<form method="post">
 				<img src="image/<?php echo $fetch_products['image'];?>">
 				<div class="detail">
-					<div class="price">$<?php echo $fetch_products['price'];?>/-</div>
+					<div class="price"><?php echo $fetch_products['price'];?> грн</div>
 					<div class="name"><?php echo $fetch_products['name'];?></div>
 					<div class="product-detail"><?php echo $fetch_products['product_detail'];?></div>
 					<span class="read-more-btn" onclick="toggleReadMore(this)">Читати більше</span>

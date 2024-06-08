@@ -87,7 +87,7 @@
 			?>
 			<form method="post" class="box">
 				<img src="image/<?php echo $fetch_products['image'];?>">
-				<div class="price">$<?php echo $fetch_products['price'];?>/-</div>
+				<div class="price"><?php echo $fetch_products['price'];?> грн</div>
 				<div class="name"><?php echo $fetch_products['name'];?></div>
 				<input type="hidden" name="product_id" value="<?php echo $fetch_products['id'];?>">
 				<input type="hidden" name="product_name" value="<?php echo $fetch_products['name'];?>">

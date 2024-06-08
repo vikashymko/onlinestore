@@ -108,7 +108,7 @@
 			?>
 		</div>
 		<div class="wishlist_total">
-			<p>Загальна сума: <span>$<?php echo $grand_total;?>/-</span></p>
+			<p>Загальна сума: <span><?php echo $grand_total;?> грн</span></p>
 			<a href="shop.php" class="btn">Продовжити перегляд</a>
 			<a href="wishlist.php?delete_all" class="btn <?php echo ($grand_total)?'':'disabled'?>" onclick="return confirm('Ви дійсно хочете видалити все з "Улюблених"')">Видалити всі</a>
 		</div>
