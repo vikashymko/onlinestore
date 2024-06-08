@@ -42,10 +42,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--box icon link-->
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>Login page</title>
+	<title>Login</title>
 </head>
 
 <body>
@@ -58,7 +57,7 @@
 							<span>'.$msg.'</span>
 							<i class="bx bx-x-circle close-msg" onclick="this.parentElement.remove()"></i>
 						</div>
-						';
+					';
 				}
 			}
 		?>

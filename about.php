@@ -20,10 +20,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="main.css" />
-	<title>veggen - about us</title>
+	<title>About us</title>
 </head>
 <body>
 	<?php include 'header.php';?>
@@ -33,7 +32,6 @@
 			<p>Книга домчить до будь-яких берегів. (Ч. Діккенс)</p>
 		</div>
 	</div>
-	<!----------about us----------->
     <div class="line2"></div>
     <div class="about-us">
     	<div class="row">

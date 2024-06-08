@@ -53,10 +53,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="main.css" />
-	<title>our shop</title>
+	<title>Our shop</title>
 </head>
 <body>
 	<?php include 'header.php';?>
@@ -69,14 +69,14 @@
 	<div class="line4"></div>
 	<section class="view_page">
 		<?php
-			if(isset($message)){
-				foreach ($message as $message){
+			if (isset($message)) {
+				foreach ($message as $msg) {
 					echo '
 						<div class="message">
-							<span>'.$message.'</span>
-							<i class="bi bi-x-circle" oneclick="this.parentElement.remove()"</i>
+							<span>'.$msg.'</span>
+							<i class="bx bx-x-circle close-msg" onclick="this.parentElement.remove()"></i>
 						</div>
-					';
+						';
 				}
 			}
 		?>
@@ -93,14 +93,14 @@
 				<div class="detail">
 					<div class="price">$<?php echo $fetch_products['price'];?>/-</div>
 					<div class="name"><?php echo $fetch_products['name'];?></div>
-					<div class="detail"><?php echo $fetch_products['product_detail'];?></div>
+					<div class="product-detail"><?php echo $fetch_products['product_detail'];?></div>
+					<span class="read-more-btn" onclick="toggleReadMore(this)">Читати більше</span>
 					<input type="hidden" name="product_id" value="<?php echo $fetch_products['id'];?>">
 					<input type="hidden" name="product_name" value="<?php echo $fetch_products['name'];?>">
 					<input type="hidden" name="product_price" value="<?php echo $fetch_products['price'];?>">
 					<input type="hidden" name="product_image" value="<?php echo $fetch_products['image'];?>">
 					<div class="icon">
 						<button type="submit" name="add_to_wishlist" class="bi bi-heart"></button>
-						<input type="number" name="product_quanity" value="1" min="0" class="quantity">
 						<button type="submit" name="add_to_cart" class="bi bi-cart"></button>
 					</div>
 				</div>
@@ -112,6 +112,13 @@
 			?>
 	</section>
 	<?php include 'footer.php';?>
+	<script type="text/javascript">
+        function toggleReadMore(btn) {
+            const detail = btn.previousElementSibling;
+            detail.classList.toggle('expanded');
+            btn.textContent = detail.classList.contains('expanded') ? 'Читати менше' : 'Читати більше';
+        }
+    </script>
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 	include 'connection.php';
 	session_start();
 	$admin_id = $_SESSION['user_name'];
+	$user_id = $_SESSION['user_id'];
 
 	if (!isset($admin_id)) {
 		header('location:login.php');
@@ -33,10 +34,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="main.css" />
-	<title>veggen - contact us</title>
+	<title>Contact us</title>
 </head>
 <body>
 	<?php include 'header.php';?>

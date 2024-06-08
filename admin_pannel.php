@@ -19,10 +19,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--box icon link-->
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>Панель управління</title>
+	<title>Admin pannel</title>
 </head>
 <body>
 	<?php include 'admin_header.php';?>
@@ -31,7 +30,7 @@
 		<div class="box-container">
 			<div class="box">
 				<?php
-					$select_pendings = mysqli_query($conn, "SELECT * FROM `order` WHERE payment_status = 'В обробці'") or die('Запит не виконано');
+					$select_pendings = mysqli_query($conn, "SELECT * FROM `orders` WHERE payment_status = 'В обробці'") or die('Запит не виконано');
 					$num_of_pendings = mysqli_num_rows($select_pendings);
 				?>
 				<h3><?php echo $num_of_pendings; ?></h3>
@@ -39,7 +38,7 @@
 			</div>
 			<div class="box">
 				<?php
-					$select_completes = mysqli_query($conn, "SELECT * FROM `order` WHERE payment_status = 'Виконано'") or die('Запит не виконано');
+					$select_completes = mysqli_query($conn, "SELECT * FROM `orders` WHERE payment_status = 'Виконано'") or die('Запит не виконано');
 					$num_of_completes = mysqli_num_rows($select_completes);
 				?>
 				<h3><?php echo $num_of_completes; ?></h3>
@@ -47,7 +46,7 @@
 			</div>
 			<div class="box">
 				<?php
-					$select_orders = mysqli_query($conn, "SELECT * FROM `order`") or die('Запит не виконано');
+					$select_orders = mysqli_query($conn, "SELECT * FROM `orders`") or die('Запит не виконано');
 					$num_of_orders = mysqli_num_rows($select_orders);
 				?>
 				<h3><?php echo $num_of_orders; ?></h3>

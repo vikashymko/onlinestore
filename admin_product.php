@@ -10,7 +10,7 @@
 		session_destroy();
 		header('location:login.php');
 	}
-	//adding products to database
+	//adding products
 	if (isset($_POST['add_product'])){
 		$product_name = mysqli_real_escape_string($conn, $_POST['name']);
 		$product_author = mysqli_real_escape_string($conn, $_POST['author']);
@@ -37,8 +37,7 @@
 			}
 		}
 	}
-
-	//delete products from database
+	//delete products
 	if (isset($_GET['delete'])){
 		$delete_id = $_GET['delete'];
 		$select_delete_image = mysqli_query($conn, "SELECT image FROM `products` WHERE id = '$delete_id'") or die('Запит не виконано');
@@ -69,7 +68,7 @@
         mysqli_query($conn, $update_query) or die('Запит не виконано');
         move_uploaded_file($update_image_tmp_name, $update_image_folder);
 	    } else {
-	        // Update without changing the image
+	    // Update without changing the image
 	        $update_query = "UPDATE `products` SET `name`='$update_name', `author`='$update_author', `category`='$update_category', `price`='$update_price', `product_detail`='$update_detail' WHERE id='$update_id'";
 	        mysqli_query($conn, $update_query) or die('Запит не виконано');
 	    }
@@ -85,12 +84,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Bootstrap Icons link -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
-	<!--box icon link-->
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>admin pannel</title>
+	<title>Admin pannel</title>
 </head>
 <body>
 	<?php include 'admin_header.php';?>
@@ -123,6 +120,15 @@
 				<option value="Детектив">Детектив</option>
 				<option value="Роман">Роман</option>
 				<option value="Триллер">Триллер</option>
+				<option value="Художня література">Художня література</option>
+				<option value="Поезія">Поезія</option>
+				<option value="Сучасна проза">Сучасна проза</option>
+				<option value="Класична проза">Класична проза</option>
+				<option value="Фантастика">Фантастика</option>
+				<option value="Фентезі">Фентезі</option>
+				<option value="Міфи">Міфи</option>
+				<option value="Історія">Історія</option>
+				<option value="Нон-фікшн">Нон-фікшн</option>
 			</select>
 			<div class="input-field">
 				<label>Ціна</label>
@@ -152,7 +158,7 @@
 				<h4><?php echo $fetch_products['name']; ?></h4>
 				<p>Автор : <?php echo $fetch_products['author']; ?></p>
 				<p>Категорія : <?php echo $fetch_products['category']; ?></p>
-				<p>Ціна : $<?php echo $fetch_products['price']; ?></p>
+				<p>Ціна : <?php echo $fetch_products['price']; ?> грн</p>
 				<details>
 					<summary>Опис</summary>
 					<?php echo $fetch_products['product_detail']; ?>
@@ -191,7 +197,16 @@
 				<select name="update_category" required>
 					<option value="none" <?php if($fetch_edit['category'] == 'none'){echo 'selected';} ?>></option>
 					<option value="Детектив" <?php if($fetch_edit['category'] == 'detective'){echo 'selected';} ?>>Детектив</option>
-					<option value="Роман" <?php if($fetch_edit['category'] == 'roman'){echo 'selected';} ?>>Роман</option>
+					<option value="Роман" <?php if($fetch_edit['category'] == 'fiction'){echo 'selected';} ?>>Роман</option>
+					<option value="Художня література" <?php if($fetch_edit['category'] == 'roman'){echo 'selected';} ?>>Художня література</option>
+					<option value="Поезія" <?php if($fetch_edit['category'] == 'poetry'){echo 'selected';} ?>>Поезія</option>
+					<option value="Сучасна проза" <?php if($fetch_edit['category'] == 'modern prose'){echo 'selected';} ?>>Сучасна проза</option>
+					<option value="Класична проза" <?php if($fetch_edit['category'] == 'clasic prose'){echo 'selected';} ?>>Класична проза</option>
+					<option value="Фантастика" <?php if($fetch_edit['category'] == 'fantastic'){echo 'selected';} ?>>Фантастика</option>
+					<option value="Фентезі" <?php if($fetch_edit['category'] == 'fentesi'){echo 'selected';} ?>>Фентезі</option>
+					<option value="Міфи" <?php if($fetch_edit['category'] == 'miths'){echo 'selected';} ?>>Міфи</option>
+					<option value="Історія" <?php if($fetch_edit['category'] == 'history'){echo 'selected';} ?>>Історія</option>
+					<option value="Нон-фікшн" <?php if($fetch_edit['category'] == 'non-fiction'){echo 'selected';} ?>>Нон-фікшн</option>
 					<option value="Триллер" <?php if($fetch_edit['category'] == 'thriller'){echo 'selected';} ?>>Триллер</option>
 				</select>
 			</div>

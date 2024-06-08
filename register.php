@@ -20,7 +20,7 @@
 			$message[] = 'Такий користувач уже зареєстрований';
 		}else{
 			if ($password != $cpassword) {
-				$message[] = 'Неправильний пароль';
+				$message[] = 'Паролі не співпадають';
 			}else{
 				mysqli_query($conn, "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('$name', '$email', '$password')") or die('Запит не виконано');
 				$message[] = 'Реєстрація пройшла успішно';
@@ -37,19 +37,19 @@
 	<!--box icon link-->
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>Register page</title>
+	<title>Register</title>
 </head>
 
 <body>
 	<section class="form-container">
 		<?php
-		if (isset($message)) {
-			foreach ($message as $msg) {
-				echo '
-					<div class="message">
-						<span>'.$msg.'</span>
-						<i class="bx bx-x-circle close-msg" onclick="this.parentElement.remove()"></i>
-					</div>
+			if (isset($message)) {
+				foreach ($message as $msg) {
+					echo '
+						<div class="message">
+							<span>'.$msg.'</span>
+							<i class="bx bx-x-circle close-msg" onclick="this.parentElement.remove()"></i>
+						</div>
 					';
 				}
 			}

@@ -53,10 +53,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="main.css" />
-	<title>veggen - home page</title>
+	<title>Home page</title>
 </head>
 <body>
 	<?php include 'header.php';?>
@@ -79,15 +79,12 @@
 			}
 		}
 	?>
-	<!----------home slider----------->
 	<?php include 'advertising.php';?>
-	<!-------discover section------->
 	<div class="line4"></div>
 	<?php include 'homeshop.php';?>
 	<div class="line2"></div>
 	<?php include 'footer.php';?>
 
-
-	<script type="text/javascript"><?php include 'script2.js'?></script>
+	<script type="text/javascript"><?php include 'script.js'?></script>
 </body>
 </html>

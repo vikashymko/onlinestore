@@ -4,12 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-	<!----------bootstrap css link----------->
-	<!----------defautl css link----------->
 	<link rel="stylesheet" href="main.css" />
-	<title>veggen - home page</title>
+	<title>Home page</title>
 </head>
 <body>
 	<div class="slider-container">
@@ -20,7 +17,7 @@
 	</div>
 
 	<button class="prev" onclick="prevSlide()"><i class="bi bi-chevron-left"></i></button>
-	<button class="next" onclick="nextSlide()"><i class="bi bi-chevron-right"></button>
+	<button class="next" onclick="nextSlide()"><i class="bi bi-chevron-right"></i></button>
 
 	<script>
 	    let currentIndex = 0;
@@ -41,7 +38,6 @@
 	        showSlide(currentIndex);
 	    }
 
-	    // Показати перше зображення при завантаженні сторінки
 	    showSlide(currentIndex);
 	</script>
 

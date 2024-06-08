@@ -34,7 +34,7 @@
 
 		header('location:wishlist.php');
 	}
-	//delete product from wishlist
+	//delete all products from wishlist
 	if (isset($_GET['delete_all'])){
 		mysqli_query($conn, "DELETE FROM `wishlist` WHERE user_id='$user_id'") or die('Запит не виконано');
 
@@ -50,10 +50,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="main.css" />
-	<title>veggen - wishlist</title>
+	<title>Wishlist</title>
 </head>
 <body>
 	<?php include 'header.php';?>
@@ -64,18 +64,17 @@
 		</div>
 	</div>
 	<div class="line"></div>
-	<!----------about us----------->
 	<section class="shop">
 		<h1 class="title">Книги, додані до "Улюблених"</h1>
 		<?php
-			if(isset($message)){
-				foreach ($message as $message){
+			if (isset($message)) {
+				foreach ($message as $msg) {
 					echo '
 						<div class="message">
-							<span>'.$message.'</span>
-							<i class="bi bi-x-circle" oneclick="this.parentElement.remove()"</i>
+							<span>'.$msg.'</span>
+							<i class="bx bx-x-circle close-msg" onclick="this.parentElement.remove()"></i>
 						</div>
-					';
+						';
 				}
 			}
 		?>

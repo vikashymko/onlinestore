@@ -10,7 +10,7 @@
 		session_destroy();
 		header('location:login.php');
 	}
-	//delete products from database
+	//delete products
 	if (isset($_GET['delete'])){
 		$delete_id = $_GET['delete'];
 		
@@ -27,10 +27,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--box icon link-->
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>admin pannel</title>
+	<title>Admin pannel</title>
 </head>
 <body>
 	<?php include 'admin_header.php';?>

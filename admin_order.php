@@ -10,12 +10,12 @@
 		session_destroy();
 		header('location:login.php');
 	}
-	//delete products from database
+	//delete products
 	if (isset($_GET['delete'])){
 		$delete_id = $_GET['delete'];
 		
-		mysqli_query($conn, "DELETE FROM `order` WHERE id='$delete_id'") or die('Запит не виконано');
-		$message[] = 'order removed successfully';
+		mysqli_query($conn, "DELETE FROM `orders` WHERE id='$delete_id'") or die('Запит не виконано');
+		$message[] = 'Замовлення успішно видалено';
 		header('location:admin_order.php');
 	}
 	//updating payment status
@@ -23,7 +23,7 @@
 		$order_id = $_POST['order_id'];
 		$update_payment = $_POST['update_payment'];
 
-		mysqli_query($conn, "UPDATE `order` SET payment_status = '$update_payment' WHERE id = '$order_id'") or die('Запит не виконано');
+		mysqli_query($conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE id = '$order_id'") or die('Запит не виконано');
 	}
 ?>
 <style type="text/css">
@@ -34,31 +34,30 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--box icon link-->
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>admin pannel</title>
+	<title>Admin pannel</title>
 </head>
 <body>
 	<?php include 'admin_header.php';?>
 	<?php
 		if (isset($message)) {
-			foreach($message as $message){
+			foreach ($message as $msg) {
 				echo '
-					<div class="msg">
+					<div class="message">
 						<span>'.$msg.'</span>
-						<i class="bi bi-x-circle" oneclick="this.parentElement.remove()"></i>
+						<i class="bx bx-x-circle close-msg" onclick="this.parentElement.remove()"></i>
 					</div>
-				';
+					';
 			}
 		}
 	?>
-	<div class="line4"></div>
 	<section class="order-container">
 		<h1 class="title">Замовлення</h1>
 		<div class="box-container">
 			<?php
-				$select_order = mysqli_query($conn, "SELECT * FROM `order`") or die('Запит не виконано');
+				$select_order = mysqli_query($conn, "SELECT * FROM `orders`") or die('Запит не виконано');
 				if(mysqli_num_rows($select_order)>0){
 					while($fetch_order = mysqli_fetch_assoc($select_order)) {
 			?>
@@ -69,7 +68,7 @@
 				<p>Номер: <span><?php echo $fetch_order['number'];?></span></p>
 				<p>Email: <span><?php echo $fetch_order['email'];?></span></p>
 				<p>Кількість книг: <span><?php echo $fetch_order['total_products'];?></span></p>
-				<p>Ціна замовлення: <span><?php echo $fetch_order['total_price'];?></span></p>
+				<p>Сума: <span><?php echo $fetch_order['total_price'];?> грн</span></p>
 				<p>Спосіб оплати: <span><?php echo $fetch_order['method'];?></span></p>
 				<p>Адреса: <span><?php echo $fetch_order['address'];?></span></p>
 				<form method="post">
@@ -81,7 +80,7 @@
 						<option value="Виконано">Виконано</option>
 					</select>
 					<input type="submit" name="update_order" value="Оновити" class="btn">
-					<a href="admin_order.php?delete=<?php echo $fetch_order['id'];?>;" onclick="return confirm('Видалити це замовлення');" class="delete">Видалити</a>
+					<a href="admin_order.php?delete=<?php echo $fetch_order['id'];?>;" onclick="return confirm('Видалити це замовлення');" class="btn">Видалити</a>
 				</form>
 			</div>
 			<?php

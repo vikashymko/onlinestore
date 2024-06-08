@@ -2,6 +2,7 @@
 	include 'connection.php';
 	session_start();
 	$admin_id = $_SESSION['user_name'];
+	$user_id = $_SESSION['user_id'];
 
 	if (!isset($admin_id)) {
 		header('location:login.php');
@@ -27,7 +28,7 @@
 
 		header('location:cart.php');
 	}
-	//delete product from wishlist
+	//delete all products from wishlist
 	if (isset($_GET['delete_all'])){
 		mysqli_query($conn, "DELETE FROM `cart` WHERE user_id='$user_id'") or die('Запит не виконано');
 
@@ -43,10 +44,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!----------bootstrap icon link----------->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="main.css" />
-	<title>veggen - our shop</title>
+	<title>Cart</title>
 </head>
 <body>
 	<?php include 'header.php';?>
@@ -57,18 +58,17 @@
 		</div>
 	</div>
 	<div class="line"></div>
-	<!----------about us----------->
 	<section class="shop">
 		<h1 class="title">Книги, додані до кошика</h1>
 		<?php
-			if(isset($message)){
-				foreach ($message as $message){
+			if (isset($message)) {
+				foreach ($message as $msg) {
 					echo '
 						<div class="message">
-							<span>'.$message.'</span>
-							<i class="bi bi-x-circle" oneclick="this.parentElement.remove()"</i>
+							<span>'.$msg.'</span>
+							<i class="bx bx-x-circle close-msg" onclick="this.parentElement.remove()"></i>
 						</div>
-					';
+						';
 				}
 			}
 		?>
@@ -83,7 +83,7 @@
 				<img src="image/<?php echo $fetch_cart['image'];?>">
 				<div class="icon">
 					<a href="view_page.php?pid=<?php echo $fetch_cart['id'];?>" class="bi bi-eye-fill"></a>
-					<a href="cart.php?delete=<?php echo $fetch_cart['id'];?>" class="bi bi-x" onclick="return confirm('do you want to delete this product from you wishlist')"></a>
+					<a href="cart.php?delete=<?php echo $fetch_cart['id'];?>" class="bi bi-x" onclick="return confirm('Ви дійсно хочете видалити цю книгу з "Кошика"')"></a>
 					<button type="submit" name="add_to_cart" class="bi bi-cart"></button>
 				</div>
 				<div class="price">$<?php echo $fetch_cart['price'];?>/-</div>
@@ -107,13 +107,11 @@
 				}
 			?>
 		</div>
-		<div class="dlt">
-			<a href="cart.php?delete_all" class="btn2" onclick="return confirm('Ви дійсно хочете видалити всі книги з кошика')">Видалити все</a>
-		</div>
 		<div class="wishlist_total">
-			<p>Загальна сума: <span>$<?php echo $grand_total;?>/-</span></p>
+			<p>Загальна сума: <span><?php echo $grand_total;?> грн</span></p>
 			<a href="shop.php" class="btn">Продовжити перегляд</a>
 			<a href="checkout.php" class="btn <?php echo ($grand_total>1)?'':'disabled'?>">Купити</a>
+			<a href="cart.php?delete_all" class="btn <?php echo ($grand_total)?'':'disabled'?>" onclick="return confirm('Ви дійсно хочете видалити все з "Кошика"')">Видалити все</a>
 		</div>
 	</section>
 	<div class="line4"></div>
